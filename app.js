@@ -7,6 +7,9 @@ var path = require('path'),
 //Brings in the merchant functions
 var merchants = require('./js/merchant.js');
 
+//DELETE For testing
+merchants.fillMerchant();
+
 //A middleware that allows for the support of parsing of posted HTML data
 app.use(bodyParser.json())
 //Allows for supporting the application/x-www-form-urlencoded post data
@@ -18,16 +21,17 @@ app.get('/', function(req, res){
     res.send("Nothing is here. Go away")
 })
 
-//For testing
-merchants.fillMerchant();
 
 //Returns the merchants in the array
 app.get('/merchants', function(req, res){
+    console.log("/merchants called")
     res.send(merchants.getMerchants());
 })
 
 //Returns the merchants in the array sorted
 app.post('/merchants/ordered', function(req, res){
+    console.log("/merchants/ordered called")
+    
     res.setHeader('Content-Type', 'application/json');
     request = req.body;
     
@@ -40,6 +44,8 @@ app.post('/merchants/ordered', function(req, res){
 })
 
 app.post('/merchants/add', function(req, res){
+    onsole.log("/merchants/add called")
+    
     res.setHeader('Content-Type', 'application/json');
     request = req.body;
     
